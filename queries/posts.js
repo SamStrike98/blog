@@ -38,3 +38,24 @@ export async function updatePost(id, { title, body }) {
         throw new Error(error)
     }
 }
+
+export async function deletePost(id) {
+    try {
+        const post = await Post.findByIdAndDelete(id);
+        return post;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+export async function addComment(id, { commentText, user, commentId }) {
+    try {
+        const post = await Post.findOneAndUpdate(
+            { _id: id },
+            { $push: { comments: { text: commentText, author: user, id: commentId } } }
+        );
+        return post;
+    } catch (error) {
+        throw new Error(error)
+    }
+}

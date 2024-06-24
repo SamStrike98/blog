@@ -1,15 +1,14 @@
 'use client'
 
 import { useState } from "react";
-import { useFetch } from "@/hooks/useFetch";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 
-const UpdatePostForm = ({ data }) => {
+const CreatePost = () => {
     const router = useRouter()
     // const { data, isLoading, error } = useFetch(`http://localhost:3000/api/posts/${id}`)
 
-    const [formData, setFormData] = useState({ title: data.title, body: data.body });
+    const [formData, setFormData] = useState({ title: '', body: '' });
     // console.log(formData.title)
 
     const handleChange = (event) => {
@@ -21,10 +20,10 @@ const UpdatePostForm = ({ data }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('form submitted')
-        const id = data._id
 
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'PATCH',
+
+        const response = await fetch(`/api/posts`, {
+            method: 'POST',
             headers: {
                 "content-type": "application/json",
             },
@@ -34,28 +33,16 @@ const UpdatePostForm = ({ data }) => {
             })
         });
 
-        if (response.status === 200) {
-            alert('post updated')
+        if (response.status === 201) {
+            alert('post Created')
         } else {
-            alert('post NOT updated')
+            alert('post NOT Created')
         }
     }
 
-    const handleDelete = async () => {
-        const id = data._id
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE'
-        })
-        if (response.status === 200) {
-            alert('post deleted')
-            router.push('/admin/posts')
-        } else {
-            alert('post NOT deleted')
-        }
-    }
+
     return (
         <div>
-            {/* {isLoading && <div>Loading...</div>} */}
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Title</label>
@@ -63,17 +50,11 @@ const UpdatePostForm = ({ data }) => {
 
                 <label htmlFor="body">Body</label>
                 <textarea id="body" name="body" value={formData.body} onChange={handleChange} className="border border-black" />
-                <button type="submit" className='bg-blue-400 rounded-md px-2 py-1'>Update Post</button>
+                <button type="submit" className='bg-blue-400 rounded-md px-2 py-1'>Create Post</button>
             </form>
-
-            <button onClick={handleDelete} className="bg-red-400 rounded-md px-2 py-1">Delete Post</button>
-
-            <Link href={`/posts/${data._id}`} className="bg-green-400 text-white px-2 py-1">View Post</Link>
-
-            {/* {error && <div>{error}</div>} */}
 
         </div>
     )
 }
 
-export default UpdatePostForm
+export default CreatePost

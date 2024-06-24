@@ -1,37 +1,43 @@
 import { NextResponse } from "next/server";
 import { createPost, getAllPosts } from "@/queries/posts";
 import dbConnect from "@/lib/mongo";
+import { auth } from "@/auth";
 
-export const POST = async (request) => {
-    try {
-        const { title, body } = await request.json();
-        
-        console.log("Title:", title, "Body:", body);
+export const POST = auth(async function POST(request) {
+    if (request.auth?.user.role === 'admin') {
+        try {
+            const { title, body } = await request.json();
 
-        // Create a DB Connection
-        await dbConnect();
-        console.log("Database connected");
+            console.log("Title:", title, "Body:", body);
 
-        // Form a DB Payload
-        const newPost = {
-            title,
-            body
-        };
+            // Create a DB Connection
+            await dbConnect();
+            console.log("Database connected");
 
-        // Update the DB
-        await createPost(newPost);
-        console.log("Post created:", newPost);
+            // Form a DB Payload
+            const newPost = {
+                title,
+                body,
 
-        return new NextResponse("Post has been created", {
-            status: 201
-        });
-    } catch (error) {
-        console.error("Error creating post:", error);
-        return new NextResponse(error.message, {
-            status: 500
-        });
+            };
+
+            // Update the DB
+            await createPost(newPost);
+            console.log("Post created:", newPost);
+
+            return new NextResponse("Post has been created", {
+                status: 201
+            });
+        } catch (error) {
+            console.error("Error creating post:", error);
+            return new NextResponse(error.message, {
+                status: 500
+            });
+        }
+    } else {
+        return NextResponse.json({ message: "Not authorized" }, { status: 401 })
     }
-};
+});
 
 export const GET = async (request) => {
     try {
@@ -51,3 +57,5 @@ export const GET = async (request) => {
         });
     }
 };
+
+

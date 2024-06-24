@@ -9,6 +9,9 @@ const postSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
+  comments: {
+    type: Array
+  }
 });
 
 // Check if the model exists before defining it
