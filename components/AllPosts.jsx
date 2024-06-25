@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 
 const AllPosts = async () => {
     const session = await auth()
-    const res = await fetch(`${process.env.URL}/api/posts`)
+    const res = await fetch(`${process.env.URL}/api/posts`, {cache: 'no-store'})
     const data = await res.json();
     
   return (
