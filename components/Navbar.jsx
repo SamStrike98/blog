@@ -48,9 +48,9 @@ const Navbar = async () => {
 
     return (
         <div className='h-full bg-green-500'>
-            <nav>
+            <nav className='gap-3'>
                 {navLinks.map(item => (
-                    <Link key={item.id} href={item.link}>{item.name}</Link>
+                    <Link className='text-white' key={item.id} href={item.link}>{item.name}</Link>
                 ))}
             </nav>
 

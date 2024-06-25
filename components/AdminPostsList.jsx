@@ -4,7 +4,7 @@ import { useFetch } from "@/hooks/useFetch"
 import Link from "next/link"
 
 const AdminPostsList = () => {
-    const { data, loading, error } = useFetch(`http://localhost:3000/api/posts`)
+    const { data, loading, error } = useFetch(`${process.env.URL}/api/posts`)
     return (
         <div>
             {loading && <div>Loading...</div>}
