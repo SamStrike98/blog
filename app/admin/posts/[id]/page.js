@@ -11,7 +11,7 @@ const Page = ({ params }) => {
     // const data = await res.json()
     // console.log(data)
 
-    const { data, loading, error } = useFetch(`http://localhost:3000/api/posts/${id}`)
+    const { data, loading, error } = useFetch(`${process.env.URL}/api/posts/${id}`)
 
     return (
         <div>

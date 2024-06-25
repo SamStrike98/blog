@@ -14,8 +14,8 @@ export default async function Home() {
   console.log(session)
   return (
     <main className="">
-      {/* <AllPosts /> */}
-      <p>Hello</p>
+      <AllPosts />
+      {/* <p>Hello</p> */}
 
     </main>
   );
