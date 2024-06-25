@@ -1,5 +1,6 @@
 import Post from "@/model/post-model";
 
+
 export async function createPost(post) {
     try {
         await Post.create(post);
@@ -48,11 +49,11 @@ export async function deletePost(id) {
     }
 }
 
-export async function addComment(id, { commentText, user, commentId }) {
+export async function addComment(id, { commentText, user, commentId, createdAt }) {
     try {
         const post = await Post.findOneAndUpdate(
             { _id: id },
-            { $push: { comments: { text: commentText, author: user, id: commentId } } }
+            { $push: { comments: { text: commentText, author: user, id: commentId, createdAt: createdAt } } }
         );
         return post;
     } catch (error) {

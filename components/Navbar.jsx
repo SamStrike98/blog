@@ -55,12 +55,14 @@ const Navbar = async () => {
             </nav>
 
             <div>
-                {session?.user ? <form action={async () => {
-                    'use server'
-                    await signOut({ redirectTo: "/" })
-                }}>
-                    <button type='submit'>Logout</button>
-                </form>
+                {session?.user ?
+
+                    <form action={async () => {
+                        'use server'
+                        await signOut({ redirectTo: "/" })
+                    }}>
+                        <button type='submit'>Logout</button>
+                    </form>
                     :
                     <form action={async () => {
                         'use server'

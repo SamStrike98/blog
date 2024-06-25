@@ -15,8 +15,10 @@ export const PATCH = auth(async function PATCH(request, { params }) {
             // console.log(params.id)
             const id = params.id
             const commentId = new mongoose.Types.ObjectId()
+            const createdAt = new Date
+            console.log(createdAt)
 
-            const post = await addComment(id, { commentText, user, commentId });
+            const post = await addComment(id, { commentText, user, commentId, createdAt });
             // console.log("Added comment:", commentText);
 
             return new NextResponse(JSON.stringify(post), {

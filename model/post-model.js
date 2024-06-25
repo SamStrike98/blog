@@ -11,6 +11,11 @@ const postSchema = new mongoose.Schema({
   },
   comments: {
     type: Array
+  },
+  created_at: {
+    type: Date,
+    required: true,
+    default: Date.now
   }
 });
 
