@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
@@ -16,6 +17,10 @@ const postSchema = new mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now
+  },
+  userId: {
+    type: ObjectId,
+    required: true
   }
 });
 

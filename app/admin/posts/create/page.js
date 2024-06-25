@@ -1,10 +1,12 @@
 import CreatePost from '@/components/CreatePost'
 import React from 'react'
+import { auth } from '@/auth'
 
-const page = () => {
+const page = async () => {
+    const session = await auth()
     return (
         <div>
-            <CreatePost />
+            <CreatePost userId={session?.user.id} />
         </div>
     )
 }
