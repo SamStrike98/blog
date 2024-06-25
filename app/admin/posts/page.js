@@ -12,7 +12,7 @@ const page = async () => {
             {session?.user.role === 'admin' ?
                 <div>
                     <h1>Admin - All Posts</h1>
-                    <AllPosts />
+                    {/* <AllPosts /> */}
 
                     <Link href={'posts/create'} className="bg-yellow rounded-md px-2 py-1">Create New Post</Link>
                 </div>
