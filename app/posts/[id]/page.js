@@ -3,6 +3,7 @@ import { auth } from '@/auth'
 import CommentForm from '@/components/CommentForm'
 import Date from '@/components/Date'
 import { FaRegComment } from "react-icons/fa";
+import Link from 'next/link';
 
 
 const page = async ({ params }) => {
@@ -24,7 +25,7 @@ const page = async ({ params }) => {
                 <ul className='flex flex-col gap-2'>
                     {data.comments.map(comment => (
                         <div key={comment.id} className='bg-gray-400'>
-                            <p  >{comment.text} - {comment.author}</p>
+                            <div><p>{comment.text}</p> <Link href={`/profile/${comment.userId}`}>{comment.author}</Link></div>
                             <Date dateString={comment.createdAt} />
                         </div>
 
@@ -32,7 +33,7 @@ const page = async ({ params }) => {
                     ))}
                 </ul>
             }
-            <CommentForm id={id} user={session?.user.name} />
+            <CommentForm id={id} user={session?.user.name} userId={session?.user.id} />
 
         </div>
     )

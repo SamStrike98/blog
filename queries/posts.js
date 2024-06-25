@@ -49,11 +49,11 @@ export async function deletePost(id) {
     }
 }
 
-export async function addComment(id, { commentText, user, commentId, createdAt }) {
+export async function addComment(id, { commentText, user, userId, commentId, createdAt }) {
     try {
         const post = await Post.findOneAndUpdate(
             { _id: id },
-            { $push: { comments: { text: commentText, author: user, id: commentId, createdAt: createdAt } } }
+            { $push: { comments: { text: commentText, author: user, id: commentId, createdAt: createdAt, userId: userId } } }
         );
         return post;
     } catch (error) {

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { auth } from "@/auth";
 
 export const PATCH = auth(async function PATCH(request, { params }) {
-    const { commentText, user } = await request.json()
+    const { commentText, user, userId } = await request.json()
 
     if (request.auth) {
 
@@ -18,7 +18,7 @@ export const PATCH = auth(async function PATCH(request, { params }) {
             const createdAt = new Date
             console.log(createdAt)
 
-            const post = await addComment(id, { commentText, user, commentId, createdAt });
+            const post = await addComment(id, { commentText, user, commentId, createdAt, userId });
             // console.log("Added comment:", commentText);
 
             return new NextResponse(JSON.stringify(post), {
