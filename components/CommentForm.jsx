@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 
-const CommentForm = ({ id, user }) => {
+const CommentForm = ({ id, user, userId }) => {
     const router = useRouter()
     // const { data, isLoading, error } = useFetch(`http://localhost:3000/api/posts/${id}`)
 
@@ -30,6 +30,7 @@ const CommentForm = ({ id, user }) => {
             body: JSON.stringify({
                 commentText: formData.comment,
                 user: user,
+                userId
             })
         });
 
