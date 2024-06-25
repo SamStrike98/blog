@@ -71,6 +71,8 @@ const Navbar = async () => {
                         <button type='submit'>Sign In</button>
                     </form>}
             </div>
+
+            <Link href={`/profile/${session?.user.id}`}>Profile</Link>
         </div>
 
 
