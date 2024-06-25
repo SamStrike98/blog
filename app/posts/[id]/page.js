@@ -1,7 +1,7 @@
 import React from 'react'
 import { auth } from '@/auth'
 import CommentForm from '@/components/CommentForm'
-import Date from '@/components/date'
+import Date from '@/components/Date'
 import { FaRegComment } from "react-icons/fa";
 
 

@@ -1,6 +1,6 @@
 'use client'
 
-import UpdatePostForm from "@/components/updatePostForm"
+import UpdatePostForm from "@/components/UpdatePostForm"
 import { useFetch } from "@/hooks/useFetch"
 
 
