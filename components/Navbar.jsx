@@ -47,14 +47,15 @@ const Navbar = async () => {
     const session = await auth()
 
     return (
-        <div className='h-full bg-green-500'>
-            <nav className='gap-3'>
+        <div className='h-full bg-green-500 flex flex-row justify-between px-6'>
+            <nav className='flex flex-row gap-4'>
                 {navLinks.map(item => (
                     <Link className='text-white' key={item.id} href={item.link}>{item.name}</Link>
                 ))}
             </nav>
 
-            <div>
+
+            <div className='flex flex-row gap-4'>
                 {session?.user ?
 
                     <form action={async () => {
@@ -70,10 +71,11 @@ const Navbar = async () => {
                     }}>
                         <button type='submit'>Sign In</button>
                     </form>}
+
+                <Link href={`/profile/${session?.user.id}`}>Profile</Link>
+                <p>{session?.user.name}</p>
             </div>
 
-            <Link href={`/profile/${session?.user.id}`}>Profile</Link>
-            <p>{session?.user.name}</p>
         </div>
 
 
