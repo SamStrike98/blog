@@ -19,6 +19,16 @@ export async function getAllPosts() {
     }
 }
 
+export async function getAllPostsByUser(userId) {
+    try {
+        const posts = await Post.find({ userId: userId });
+        return posts;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+
 export async function getPostById(id) {
     try {
         const post = await Post.findById(id);

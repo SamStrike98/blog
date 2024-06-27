@@ -18,6 +18,7 @@ const page = async ({ params }) => {
         <div>
             <h1>{data.title}</h1>
             <p>{data.body}</p>
+            <p>{data.name}</p>
             <div className='flex flex-row items-center'><FaRegComment /> {data.comments.length}</div>
 
             {data.comments.length === 0 ? <div>No Comments Yet</div>

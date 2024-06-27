@@ -1,6 +1,7 @@
 import React from 'react'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation';
+import PostsByUser from '@/components/PostsByUser';
 
 const page = async ({ params }) => {
     const id = params.id
@@ -11,6 +12,8 @@ const page = async ({ params }) => {
         return (
             <div>
                 {id} - {id === session?.user.id ? <p>Can edit</p> : <p>Cannot edit</p>}
+
+                <PostsByUser id={id} />
             </div>
         )
     }

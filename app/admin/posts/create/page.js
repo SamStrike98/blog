@@ -6,7 +6,7 @@ const page = async () => {
     const session = await auth()
     return (
         <div>
-            <CreatePost userId={session?.user.id} />
+            <CreatePost userId={session?.user.id} name={session?.user.name} />
         </div>
     )
 }

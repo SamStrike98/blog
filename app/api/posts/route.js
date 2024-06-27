@@ -6,7 +6,7 @@ import { auth } from "@/auth";
 export const POST = auth(async function POST(request) {
     if (request.auth?.user.role === 'admin') {
         try {
-            const { title, body, userId } = await request.json();
+            const { title, body, userId, name } = await request.json();
 
             console.log("Title:", title, "Body:", body);
 
@@ -18,7 +18,8 @@ export const POST = auth(async function POST(request) {
             const newPost = {
                 title,
                 body,
-                userId
+                userId,
+                name
 
             };
 

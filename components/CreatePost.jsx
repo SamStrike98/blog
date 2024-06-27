@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 
-const CreatePost = ({ userId }) => {
+const CreatePost = ({ userId, name }) => {
     const router = useRouter()
     // const { data, isLoading, error } = useFetch(`http://localhost:3000/api/posts/${id}`)
 
@@ -30,7 +30,8 @@ const CreatePost = ({ userId }) => {
             body: JSON.stringify({
                 title: formData.title,
                 body: formData.body,
-                userId: userId
+                userId: userId,
+                name: name
             })
         });
 

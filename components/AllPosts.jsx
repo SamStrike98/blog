@@ -10,9 +10,9 @@ const AllPosts = async () => {
     <div>
         {data ? <ul className="flex flex-col">
             {data.map(item => (
-                <div key={item._id}>
-                    <Link  href={`posts/${item._id}`}> {item.title} </Link>
-                    {session?.user.role === 'admin' && <Link href={`/admin/posts/${item._id}`} className="bg-blue-400 px-2 py-1 rounded-md">Edit Post</Link>}
+                <div key={item._id} className="flex flex-row">
+                    <div><Link  href={`posts/${item._id}`}> {item.title} </Link> <Link href={`profile/${item.userId}`}>{item.name}</Link></div>
+                    {session?.user.id === item.userId && <Link href={`/admin/posts/${item._id}`} className="bg-blue-400 px-2 py-1 rounded-md">Edit Post</Link>}
                 </div>
                 
                 ))}

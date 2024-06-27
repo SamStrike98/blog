@@ -21,6 +21,10 @@ const postSchema = new mongoose.Schema({
   userId: {
     type: ObjectId,
     required: true
+  },
+  name: {
+    type: String,
+    required: true
   }
 });
 

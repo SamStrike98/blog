@@ -73,6 +73,7 @@ const Navbar = async () => {
             </div>
 
             <Link href={`/profile/${session?.user.id}`}>Profile</Link>
+            <p>{session?.user.name}</p>
         </div>
 
 
